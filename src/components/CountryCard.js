@@ -1,49 +1,93 @@
-//import Card from 'react-bootstrap/Card';
+
 import { Link } from 'react-router-dom';
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import CardActions from '@mui/material/CardActions';
 
+import { CardContent } from '@mui/material';
+import CardMedia from '@mui/material/CardMedia';
+
+import Typography from '@mui/material/Typography';
+import { Box, styled } from '@mui/material'; 
+
+import { ThemeProvider } from '@mui/material';
+import { borders, display } from '@mui/system';
+
+import customtheme from '../theme'
 
 const CountryCard = (props) => {
+
+      
         return (
 
             <>
-            <Grid   item xs={16}>
-                <Card  sx={{ display: 'flex' }}>
 
-                     
+            <ThemeProvider theme={customtheme}>
+            
+            <Grid  xs={12} sm={12} lg={12}>
+            
+                    <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #2C3A43', borderRadius: '6px' }}>
+                        
+                      
+                            <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
+                            <Link to={`/country/${props.name}`}>
+                                <Typography color="customCard.white" gutterBottom variant="h5" component="div">
+                                    {props.name}
+                                </Typography>
+                            </Link>
+                            </Box>
 
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                            <Link to={`/country/${props.name}`}>{props.name}</Link>
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                 {props.region}
-                            </Typography>
-                        </CardContent>       
-                    </Box>
+                            <Box sx={{p: 5, display: 'flex'}}>
+                            
+                                <Grid xs={6}>
+                                
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                            <p>Region</p>
+                                        </Typography>
+                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                            <p>{props.region}</p>
+                                        </Typography>
+                                    </Box>
+                                    
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                            <p>Capital</p>
+                                        </Typography>
+                                        
+                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                            <p>{props.capital}</p>
+                                        </Typography>
+                                    </Box>
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                        <CardMedia height="140" width="140" component="img" src={props.flag} />
-                    </Box>
-                </Card>
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                            <p>Population</p>
+                                        </Typography>
+                                        
+                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                            <p>{props.population}</p>
+                                        </Typography>
+                                    </Box>
+
+                                    
+                                </Grid>
+                                <Grid xs={6}>
+                                   
+                                </Grid>
+
+                                <Grid xs={12}>
+                                    <CardMedia sx={{ borderRadius: '6px' }} height="100%" width="100%" component="img" src={props.flag}  />  
+                                </Grid>
+                            
+                            
+                            </Box>
+
+                    </Card>
+              
             </Grid>
-
-            {/* <Card>
-            <Card.Img variant='top' src={props.flag} />
-            <Card.Body>
-                <Card.Title></Card.Title>
-                <p>{props.region}</p>
-            </Card.Body>
-        </Card> */}
+        </ThemeProvider>
             </>
 
             
