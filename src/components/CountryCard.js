@@ -27,12 +27,12 @@ const CountryCard = (props) => {
             
             <Grid xs={12} sm={12} lg={12}>
             
-                    <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #2C3A43', borderRadius: '6px' }}>
+                    <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #414147', borderRadius: '1.5rem' }}>
                         
                       
                             <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
-                            <Link to={`/country/${props.name}`}>
-                                <Typography color="customCard.white" gutterBottom variant="h5" component="div">
+                            <Link underline="none"  to={`/country/${props.name}`}>
+                                <Typography color="customCard.white" gutterBottom variant="h4" component="div">
                                     {props.name}
                                 </Typography>
                             </Link>
@@ -43,20 +43,20 @@ const CountryCard = (props) => {
                                 <Grid xs={6} >
                                 
                                     <Box>
-                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Region</p>
                                         </Typography>
-                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
                                             <p>{props.region}</p>
                                         </Typography>
                                     </Box>
                                     
                                     <Box>
-                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Capital</p>
                                         </Typography>
                                         
-                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.white" gutterBottom variant="h5"   component="div">
                                             <p>{props.capital}</p>
                                         </Typography>
                                     </Box>
@@ -68,21 +68,21 @@ const CountryCard = (props) => {
 
                                 <Grid xs={6}>
                                     <Box>
-                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Population</p>
                                         </Typography>
                                         
-                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.white" gutterBottom variant="h5"   component="div">
                                             <p>{props.population}</p>
                                         </Typography>
                                     </Box>
 
                                     <Box>
-                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Population</p>
                                         </Typography>
                                         
-                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.white" gutterBottom variant="h5"    component="div">
                                            {/*  <p>{console.log(props.languages)}</p> */}
                                         </Typography>
                                     </Box>

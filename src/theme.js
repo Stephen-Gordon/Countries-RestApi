@@ -7,13 +7,13 @@ const customtheme = createTheme({
             darker: '#053e85',
         },
         background: {
-          paper: '#141A1E', // your color
-          default:'#141A1E',
+          paper: '#1f1f27', // your color
+          default:'#13131b',
           white: "#FFFFFF",
         },
         customCard: {
             white: "#FFFFFF",
-            purple: "#784FFE",
+            purple: "#a5a5a8",
           }
       },
       typography: {

@@ -68,26 +68,7 @@ const Home = () => {
     let Americas= "Americas"
     let Oceania= "Oceania"
 
-     /* const handleEuropeClick = (e) => {
-        handleSelect(e.target.value);
-    } */
 
-   /*  const handleAsiaClick = (e) => {
-        setRegion(e.target.value);
-    }
-    const handleAmericasClick = (e) => {
-        setRegion(e.target.value);
-    }
-    const handleAfricaClick = (e) => {
-        setRegion(e.target.value);
-    }
-    const handleOceaniaClick = (e) => {
-        setRegion(e.target.value);
-    }  */
-
-    
-
-    
 
     return(
         
@@ -97,15 +78,13 @@ const Home = () => {
             
             <Grid container sx={{mt:5}}>
                 
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Europe} onClick={handleSelect}>Europe</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Asia} onClick={handleSelect}>Asia</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Americas} onClick={handleSelect}>Americas</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Africa} onClick={handleSelect}>Africa</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Oceania} onClick={handleSelect}>Oceania</Button>
+                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Europe} onClick={handleSelect}>Europe</Button>
+                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Asia} onClick={handleSelect}>Asia</Button>
+                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Americas} onClick={handleSelect}>Americas</Button>
+                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Africa} onClick={handleSelect}>Africa</Button>
+                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Oceania} onClick={handleSelect}>Oceania</Button>
                 {(countries.length > 0) ? countryCards : <Loading />}
-
                 
-            
             </Grid>
         </ThemeProvider>
         

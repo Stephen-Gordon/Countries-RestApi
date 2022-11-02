@@ -46,12 +46,12 @@ const SingleCountry = () => {
             
             <Grid  xs={12} sm={12} lg={12}>
             
-                    <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #2C3A43', borderRadius: '6px' }}>
+                    <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #414147', borderRadius: '6px' }}>
                         
                       
                             <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
                             
-                                <Typography color="customCard.white" gutterBottom variant="h5" component="div">
+                                <Typography color="customCard.white" gutterBottom variant="h4" component="div">
                                     {(country && country.name) ? country.name.common : "loading"}
                                 </Typography>
                            
@@ -62,20 +62,20 @@ const SingleCountry = () => {
                                 <Grid xs={6}>
                                 
                                     <Box>
-                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Region</p>
                                         </Typography>
-                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.white" gutterBottom variant="h4" component="div">
                                             <p>{(country && country.region) ? country.region : "loading"}</p>
                                         </Typography>
                                     </Box>
                                     
                                     <Box>
-                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Capital</p>
                                         </Typography>
                                         
-                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.white" gutterBottom variant="h5" component="div">
                                         <p>{(country && country.capital) ? country.capital : "loading"}</p>
                                         </Typography>
                                     </Box>
@@ -87,14 +87,17 @@ const SingleCountry = () => {
                                 
                                 <Grid xs={6}>
                                     <Box>
-                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Population</p>
                                         </Typography>
                                         
-                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <Typography color="customCard.white" gutterBottom variant="h5" component="div">
                                             <p>{(country && country.population) ? country.population : "loading"}</p>
                                         </Typography>
                                     </Box>
+                                </Grid>
+                                <Grid xs={6}>
+                                    
                                 </Grid>
 
                                 <Grid xs={12}>

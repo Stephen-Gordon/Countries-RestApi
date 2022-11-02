@@ -21,7 +21,7 @@ let App = () => {
   <ThemeProvider theme={customtheme}>
     <CssBaseline>
     <Router>
-        <Container  maxWidth="sm">        
+        <Container  maxWidth="md">        
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/country/:name' element={<SingleCountry/>}/>
