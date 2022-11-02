@@ -18,47 +18,61 @@ const Home = () => {
    
 
     const [countries, setCountries] = useState([]);
-    const [region, setRegion] = useState("all")
-    const [filteredCountries, setFitlteredCountries] = useState("all")
+    const [filteredCountries, setFilteredCountries] = useState([]);
     
 
 
     useEffect(() => {
-        axios.get('/all')
-        .then((response) => {
-            //console.log(response.data)
-            setCountries(response.data)
-            
-            setFitlteredCountries(response.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }, [])
+        axios.get(`/all`)
+             .then((response) => {
+                console.log("Use EFFECT");
+                setCountries(response.data);
+                setFilteredCountries(response.data);
+             })
+             .catch((error) => {
+                console.log(error);
+             });
+    }, []);
 
-    const handleRegion = (e) => {
+
+
+    let countryCards = filteredCountries.map((country, i) => {
+        return <CountryCard flag={country.flags.png} name={country.name.common} region={country.region} capital={country.capital} population={country.population}  languages={country.languages} key={i} />
+    })
+
+    /* const handleRegion = (e) => {
         
         let filter = countries.filter((country) => {
             return countries.region === e
         })
-        setFitlteredCountries(filter)
+        setFilteredCountries(filter)
 
-    }
+    } */
+    
+    const handleSelect = (e) => {
+
+        console.log(e.target.value)
+        let filter = countries.filter((country) => {
+            return country.region === e.target.value;
+        });
+
+        setFilteredCountries(filter);
+    };
 
     
 
 
-    let europe= "europe"
-    let asia= "asia"
-    let africa= "africa"
-    let americas= "americas"
-    let oceania= "oceania"
+    let Europe= "Europe"
+    let Asia= "Asia"
+    let Africa= "Africa"
+    let Americas= "Americas"
+    let Oceania= "Oceania"
 
-    const handleEuropeClick = (e) => {
-        handleRegion(e.target.value);
-    }
+     /* const handleEuropeClick = (e) => {
+        handleSelect(e.target.value);
+    } */
 
-    const handleAsiaClick = (e) => {
+   /*  const handleAsiaClick = (e) => {
         setRegion(e.target.value);
     }
     const handleAmericasClick = (e) => {
@@ -69,11 +83,9 @@ const Home = () => {
     }
     const handleOceaniaClick = (e) => {
         setRegion(e.target.value);
-    }
+    }  */
 
-    let countryCards = countries.map((country, i) => {
-        return <CountryCard flag={country.flags.png} name={country.name.common} region={country.region} capital={country.capital} population={country.population}  languages={country.languages} key={i} />
-    })
+    
 
     
 
@@ -85,11 +97,11 @@ const Home = () => {
             
             <Grid container sx={{mt:5}}>
                 
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={europe} onClick={handleEuropeClick}>Europe</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={asia} onClick={handleAsiaClick}>Asia</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={americas} onClick={handleAmericasClick}>Americas</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={africa} onClick={handleAfricaClick}>Africa</Button>
-                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={oceania} onClick={handleOceaniaClick}>Oceania</Button>
+                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Europe} onClick={handleSelect}>Europe</Button>
+                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Asia} onClick={handleSelect}>Asia</Button>
+                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Americas} onClick={handleSelect}>Americas</Button>
+                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Africa} onClick={handleSelect}>Africa</Button>
+                <Button sx={{mr:3, border: '1px solid #2C3A43', borderRadius: '6px'} } value={Oceania} onClick={handleSelect}>Oceania</Button>
                 {(countries.length > 0) ? countryCards : <Loading />}
 
                 
