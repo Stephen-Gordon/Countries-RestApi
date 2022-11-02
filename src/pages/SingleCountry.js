@@ -96,9 +96,10 @@ const SingleCountry = () => {
                                         </Typography>
                                     </Box>
                                 </Grid>
-                                {/* <Grid xs={12}>
-                                    <CardMedia sx={{ borderRadius: '6px' }} height="100%" width="100%" component="img" src={country.flags.png}  />  
-                                </Grid>  */}
+
+                                <Grid xs={12}>
+                                    <CardMedia sx={{ borderRadius: '6px' }} height="100%" width="100%" component="img" src={country?.flags?.png}  />  
+                                </Grid> 
                                
                             
                             

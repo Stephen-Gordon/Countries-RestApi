@@ -83,7 +83,7 @@ const CountryCard = (props) => {
                                         </Typography>
                                         
                                         <Typography color="customCard.white" gutterBottom variant="" component="div">
-                                            <p>{console.log(props.languages)}</p>
+                                           {/*  <p>{console.log(props.languages)}</p> */}
                                         </Typography>
                                     </Box>
                                 </Grid>
