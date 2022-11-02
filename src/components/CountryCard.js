@@ -25,7 +25,7 @@ const CountryCard = (props) => {
 
             <ThemeProvider theme={customtheme}>
             
-            <Grid  xs={12} sm={12} lg={12}>
+            <Grid xs={12} sm={12} lg={12}>
             
                     <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #2C3A43', borderRadius: '6px' }}>
                         
@@ -40,7 +40,7 @@ const CountryCard = (props) => {
 
                             <Box sx={{p: 5, display: 'flex'}}>
                             
-                                <Grid xs={6}>
+                                <Grid xs={6} >
                                 
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="" component="div">
@@ -61,6 +61,12 @@ const CountryCard = (props) => {
                                         </Typography>
                                     </Box>
 
+                                    
+
+                                    
+                                </Grid>
+
+                                <Grid xs={6}>
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="" component="div">
                                             <p>Population</p>
@@ -71,8 +77,17 @@ const CountryCard = (props) => {
                                         </Typography>
                                     </Box>
 
-                                    
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                            <p>Population</p>
+                                        </Typography>
+                                        
+                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                            <p>{console.log(props.languages)}</p>
+                                        </Typography>
+                                    </Box>
                                 </Grid>
+
                                 <Grid xs={6}>
                                    
                                 </Grid>

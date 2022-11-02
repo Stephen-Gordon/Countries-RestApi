@@ -1,46 +1,112 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
-import axios from 'axios'
 
 
+//API
+import axios from '../config/api';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import { Box } from "@mui/material";
+import { ThemeProvider ,Box, Card, CardActions, CardContent, CardMedia, Typography, Grid ,Button } from "@mui/material";
 
 import Loading from '../components/Loading'
+
+
+import {  } from '@mui/material';
+import { borders, display } from '@mui/system';
+
+import customtheme from '../theme'
+
+
 
 const SingleCountry = () => {
     
     let { name } = useParams();
+    let navigate = useNavigate();
 
     const [country, setCountry] = useState([]);
 
 
     useEffect(() => {
-        axios.get(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
-        .then((response) => {
-            //console.log(response.data)
-            setCountry(response.data[0])
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }, [])
+        axios.get(`/name/${name}?fullText=true`)
+             .then((response) => {
+                // console.log(response.data);
+                setCountry(response.data[0]);
+             })
+             .catch((error) => {
+                console.log(error);
+                navigate('/country');
+             });
+    }, []);
 
     let html = <Loading/>
 
     if(country){
         html = (
             <>
-            <p>Country is {name}</p>
-            <p>{(country && country.name) ? country.name.common : "loading"}</p>
-            <p>{(country && country.region) ? country.region : "loading"}</p>
+             <ThemeProvider theme={customtheme}>
+            
+            <Grid  xs={12} sm={12} lg={12}>
+            
+                    <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #2C3A43', borderRadius: '6px' }}>
+                        
+                      
+                            <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
+                            
+                                <Typography color="customCard.white" gutterBottom variant="h5" component="div">
+                                    {(country && country.name) ? country.name.common : "loading"}
+                                </Typography>
+                           
+                            </Box>
+
+                            <Box sx={{p: 5, display: 'flex'}}>
+                            
+                                <Grid xs={6}>
+                                
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                            <p>Region</p>
+                                        </Typography>
+                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                            <p>{(country && country.region) ? country.region : "loading"}</p>
+                                        </Typography>
+                                    </Box>
+                                    
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                            <p>Capital</p>
+                                        </Typography>
+                                        
+                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                        <p>{(country && country.capital) ? country.capital : "loading"}</p>
+                                        </Typography>
+                                    </Box>
+
+                                    
+
+                                    
+                                </Grid>
+                                
+                                <Grid xs={6}>
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="" component="div">
+                                            <p>Population</p>
+                                        </Typography>
+                                        
+                                        <Typography color="customCard.white" gutterBottom variant="" component="div">
+                                            <p>{(country && country.population) ? country.population : "loading"}</p>
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                                {/* <Grid xs={12}>
+                                    <CardMedia sx={{ borderRadius: '6px' }} height="100%" width="100%" component="img" src={country.flags.png}  />  
+                                </Grid>  */}
+                               
+                            
+                            
+                            </Box>
+
+                    </Card>
+            </Grid>
+        </ThemeProvider>
             </>
         );
     }
@@ -50,32 +116,14 @@ const SingleCountry = () => {
     return(
         
         <>
-        
-            <Grid>
+        {html}
+            
 
-                <Card  sx={{ display: 'flex' }}>
 
-                     
 
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                            <p>Country is {name}</p>
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                 
-                                <p>{(country && country.name) ? country.name.common : "loading"}</p>
-                                <p>{(country && country.region) ? country.region : "loading"}</p>
-                            </Typography>
-                        </CardContent>       
-                    </Box>
 
-                    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-                        <CardMedia height="140" width="140" component="img" src={country.flags.png} />
-                    </Box>
-                </Card>
 
-            </Grid>
+           
           
         </>
         
