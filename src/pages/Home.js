@@ -11,6 +11,8 @@ import { Grid, Item, Button, ThemeProvider } from '@mui/material';
 
 
 
+
+
 const COUNTRIES_URL = 'https://restcountries.com/v3.1/';
 
 const Home = () => {
@@ -34,20 +36,13 @@ const Home = () => {
              });
     }, []);
 
-
+    
 
     let countryCards = filteredCountries.map((country, i) => {
-        return <CountryCard flag={country.flags.png} name={country.name.common} region={country.region} capital={country.capital} population={country.population}  languages={country.languages} key={i} />
+        return <CountryCard flag={country.flags.png} name={country.name} region={country.region} capital={country.capital} population={country.population}  languages={country.languages} key={i} />
     })
 
-    /* const handleRegion = (e) => {
-        
-        let filter = countries.filter((country) => {
-            return countries.region === e
-        })
-        setFilteredCountries(filter)
-
-    } */
+   
     
     const handleSelect = (e) => {
 
@@ -58,6 +53,7 @@ const Home = () => {
 
         setFilteredCountries(filter);
     };
+    
 
     
 

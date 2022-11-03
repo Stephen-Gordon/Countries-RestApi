@@ -79,7 +79,7 @@ const CountryCard = (props) => {
 
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
-                                            <p>Population</p>
+                                            <p>Languages</p>
                                         </Typography>
                                         
                                         <Typography color="customCard.white" gutterBottom variant="h5"    component="div">

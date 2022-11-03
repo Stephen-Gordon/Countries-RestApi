@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import {useState, useEffect} from 'react';
 
-
+//https://app.abstractapi.com/api/holidays/pricing
 //API
 import axios from '../config/api';
 
@@ -9,9 +9,6 @@ import { ThemeProvider ,Box, Card, CardActions, CardContent, CardMedia, Typograp
 
 import Loading from '../components/Loading'
 
-
-import {  } from '@mui/material';
-import { borders, display } from '@mui/system';
 
 import customtheme from '../theme'
 
@@ -22,20 +19,41 @@ const SingleCountry = () => {
     let { name } = useParams();
     let navigate = useNavigate();
 
-    const [country, setCountry] = useState([]);
+    
 
+    const [country, setCountry] = useState([]);
+    const [holidays, setHolidays] = useState([]);
+    const [alpha2Code, setAlpha2Code] = useState("");
+
+   
 
     useEffect(() => {
         axios.get(`/name/${name}?fullText=true`)
              .then((response) => {
-                // console.log(response.data);
                 setCountry(response.data[0]);
+                setAlpha2Code(response.data[0].alpha2Code);
+                holidaysApi();
              })
              .catch((error) => {
                 console.log(error);
                 navigate('/country');
              });
     }, []);
+
+    const holidaysApi = () => {
+        console.log(alpha2Code)
+        axios.get(`https://holidays.abstractapi.com/v1/?api_key=4347605faf344efc8645549af1840be8&country=${alpha2Code}&year=2020`)
+              .then((response) => {
+                 console.log(response.data)
+                 setHolidays(response.data);
+             })
+              .catch((error) => {
+                 console.log(error);
+              }); 
+        
+   }
+    
+    
 
     let html = <Loading/>
 
@@ -84,7 +102,7 @@ const SingleCountry = () => {
 
                                     
                                 </Grid>
-                                
+                               
                                 <Grid xs={6}>
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
@@ -97,7 +115,16 @@ const SingleCountry = () => {
                                     </Box>
                                 </Grid>
                                 <Grid xs={6}>
-                                    
+                                    <Box>
+                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
+                                            <p>Currencies</p>
+                                        </Typography>
+                                        
+                                        {/* <Typography color="customCard.white" gutterBottom variant="h5" component="div">
+                                        {Object.values(country.currencies)[0].name}
+                                            <p>{(country && Object.values(country.currencies)[0].name) ? Object.values(country.currencies)[0].name : "loading"}</p>
+                                        </Typography> */}
+                                    </Box>
                                 </Grid>
 
                                 <Grid xs={12}>
@@ -106,6 +133,11 @@ const SingleCountry = () => {
                                
                             
                             
+                            </Box>
+                            <Box>
+                            <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
+                                         {/*    <p>Holiday name: {holidays[0].name}</p> */}
+                            </Typography>
                             </Box>
 
                     </Card>
