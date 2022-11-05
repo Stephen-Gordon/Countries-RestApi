@@ -8,11 +8,17 @@ import axios from '../config/api';
 import { ThemeProvider ,Box, Card, CardActions, CardContent, CardMedia, Typography, Grid ,Button } from "@mui/material";
 
 import Loading from '../components/Loading'
-
+import Grow from "@mui/material";
 
 import customtheme from '../theme'
 
-
+import { styled } from '@mui/material/styles';
+const Img = styled('img')({
+    
+    display: 'column',
+    width: '100%',
+    height: '100%',
+  });
 
 const SingleCountry = () => {
     
@@ -20,12 +26,12 @@ const SingleCountry = () => {
     let navigate = useNavigate();
 
     
-
+    
     const [country, setCountry] = useState([]);
-    const [holidays, setHolidays] = useState([]);
     const [alpha2Code, setAlpha2Code] = useState("");
+    const [holidays, setHolidays] = useState([]);
 
-   
+    
 
     useEffect(() => {
         axios.get(`/name/${name}?fullText=true`)
@@ -57,33 +63,33 @@ const SingleCountry = () => {
 
     let html = <Loading/>
 
-    if(country){
+    if(country && holidays){
         html = (
             <>
-             <ThemeProvider theme={customtheme}>
+            <ThemeProvider theme={customtheme}>
             
-            <Grid  xs={12} sm={12} lg={12}>
+                <Grid container sx={{ mt:5 }} xs={12} sm={12} lg={12}>
             
                     <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #414147', borderRadius: '6px' }}>
                         
                       
                             <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
                             
-                                <Typography color="customCard.white" gutterBottom variant="h4" component="div">
-                                    {(country && country.name) ? country.name.common : "loading"}
+                                <Typography color="customCard.white" gutterBottom variant="h3" component="div">
+                                    {(country && country.name) ? country.name : "loading"}
                                 </Typography>
                            
                             </Box>
 
-                            <Box sx={{p: 5, display: 'flex'}}>
+                            <Grid cointainer column={12}  sx={{pl: 5, display: 'flex', flexWrap: 'wrap'}}>
                             
-                                <Grid xs={6}>
+                                <Grid sx={{pr:3}} item lg={2} md={2} sm={4} xs={6} >
                                 
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Region</p>
                                         </Typography>
-                                        <Typography color="customCard.white" gutterBottom variant="h4" component="div">
+                                        <Typography color="customCard.white" gutterBottom variant="h5" component="div">
                                             <p>{(country && country.region) ? country.region : "loading"}</p>
                                         </Typography>
                                     </Box>
@@ -103,7 +109,7 @@ const SingleCountry = () => {
                                     
                                 </Grid>
                                
-                                <Grid xs={6}>
+                                <Grid sx={{pr:3}} item lg={2} md={2} sm={4} xs={6}>
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Population</p>
@@ -114,9 +120,13 @@ const SingleCountry = () => {
                                         </Typography>
                                     </Box>
                                 </Grid>
-                                <Grid xs={6}>
+                                
+                                <Grid sx={{pr:3}} item lg={2} md={2} sm={4} xs={6} >
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
+                                            <p>Currencies</p>
+                                        </Typography>
+                                        <Typography color="customCard.white" gutterBottom variant="h5" component="div">
                                             <p>Currencies</p>
                                         </Typography>
                                         
@@ -127,19 +137,61 @@ const SingleCountry = () => {
                                     </Box>
                                 </Grid>
 
-                                <Grid xs={12}>
-                                    <CardMedia sx={{ borderRadius: '6px' }} height="100%" width="100%" component="img" src={country?.flags?.png}  />  
+                                <Grid sx={{pr:5}} item md={6} sm={12} xs={12}>
+                                    <Img  sx={{ border: '1px solid #414147', borderRadius: '12px' }} alt="country-image" src={country?.flags?.png} />
                                 </Grid> 
                                
                             
                             
-                            </Box>
-                            <Box>
-                            <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
-                                         {/*    <p>Holiday name: {holidays[0].name}</p> */}
-                            </Typography>
-                            </Box>
+                            </Grid>
 
+
+                            <Box sx={{mt:' 112px', pl:5, pr:5, pt:5,  gridArea: 'header' }}>   
+                                <Typography color="customCard.light" gutterBottom variant="h4" component="div">
+                                        <p>{(country && country.name) ? country.name : "loading"} Holidays</p>
+                                </Typography>
+                            </Box>
+                                
+                           
+                           
+                                
+                                <Grid container  columns={16} sx={{display: 'flex'}}>
+                                    <Grid  item md={8} sm={16}>
+                                        <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
+                                                
+                                            <Box>
+                                                <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
+                                                    <p>Liberation Day</p>
+                                                </Typography>
+                                                <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
+                                                    <p>Liberation day is a public holiday in afganistan</p>
+                                                </Typography>
+                                                <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
+                                                    <p>Tuesday the 15th 2022</p>
+                                                </Typography>
+                                            </Box>
+                                                
+                                        </Card>
+                                    </Grid>
+                                       
+                                        <Grid item md={8} sm={16}>
+                                            <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
+                                                    
+                                                    <Box>
+                                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
+                                                            <p>Liberation Day</p>
+                                                        </Typography>
+                                                        <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
+                                                            <p>Liberation day is a public holiday in afganistan</p>
+                                                        </Typography>
+                                                        <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
+                                                            <p>Tuesday the 15th 2022</p>
+                                                        </Typography>
+                                                    </Box>
+    
+                                            </Card>
+                                        </Grid>
+                                </Grid>
                     </Card>
             </Grid>
         </ThemeProvider>
@@ -147,6 +199,9 @@ const SingleCountry = () => {
         );
     }
 
+
+    {/* <p>{(holidays) ? holidays[0].name : "loading"}</p> */}
+    {/* <p>Holiday name: {holidays?[0].name}</p> */}
 
     /* Return HTML for loading feature */
     return(
