@@ -29,8 +29,8 @@ const SingleCountry = () => {
     
     const [country, setCountry] = useState([]);
     const [alpha2Code, setAlpha2Code] = useState("");
+    
     const [holidays, setHolidays] = useState([]);
-
     
 
     useEffect(() => {
@@ -126,14 +126,14 @@ const SingleCountry = () => {
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Currencies</p>
                                         </Typography>
-                                        <Typography color="customCard.white" gutterBottom variant="h5" component="div">
-                                            <p>Currencies</p>
-                                        </Typography>
-                                        
                                         {/* <Typography color="customCard.white" gutterBottom variant="h5" component="div">
-                                        {Object.values(country.currencies)[0].name}
-                                            <p>{(country && Object.values(country.currencies)[0].name) ? Object.values(country.currencies)[0].name : "loading"}</p>
+                                            <p>Currencies</p>
                                         </Typography> */}
+
+                                      <Typography color="customCard.white" gutterBottom variant="h5" component="div">
+                                        {/* {Object.values(country.currencies)[0].name} */}
+                                            {/* <p>{(country && Object.values(country.currencies)[0].name) ? Object.values(country.currencies)[0].name : "loading"}</p> */}
+                                        </Typography> 
                                     </Box>
                                 </Grid>
 
@@ -161,18 +161,19 @@ const SingleCountry = () => {
                                                 
                                             <Box>
                                                 <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
-                                                    <p>Liberation Day</p>
+                                                <p>{(holidays) ? holidays[0].name : "loading"}</p> 
+                                                    {/* <p>{holidays[0].name}</p> */}
                                                 </Typography>
                                                 <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
-                                                    <p>Liberation day is a public holiday in afganistan</p>
+                                                {/* <p>{holidays[0].description}</p> */}
                                                 </Typography>
-                                                <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
-                                                    <p>Tuesday the 15th 2022</p>
-                                                </Typography>
+                                                {/* <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
+                                                    <p>{holidays[0].date}</p>
+                                                </Typography> */}
                                             </Box>
                                                 
                                         </Card>
-                                    </Grid>
+                                    </Grid> 
                                        
                                         <Grid item md={8} sm={16}>
                                             <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
@@ -201,21 +202,13 @@ const SingleCountry = () => {
 
 
     {/* <p>{(holidays) ? holidays[0].name : "loading"}</p> */}
-    {/* <p>Holiday name: {holidays?[0].name}</p> */}
+    
 
     /* Return HTML for loading feature */
     return(
         
         <>
-        {html}
-            
-
-
-
-
-
-           
-          
+        {html}   
         </>
         
 

@@ -2,18 +2,21 @@ import {useState, useEffect} from 'react';
 import axios from '../config/api';
 import customtheme from '../theme'
 
-import Loading from '../components/Loading'
-
+import Loading from '../components/Loading';
 
 import CountryCard from '../components/CountryCard';
 
-import { Grid, Item, Button, ThemeProvider } from '@mui/material';
+import {MenuItem, Select, InputLabel, FormControl, Grid, Item, Button, ThemeProvider } from '@mui/material';
 
-
+import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/material/styles';
 
 
 
 const COUNTRIES_URL = 'https://restcountries.com/v3.1/';
+
+
+
 
 const Home = () => {
 
@@ -44,6 +47,17 @@ const Home = () => {
 
    
     
+    
+    
+   
+
+    
+    const [dropdownRegion, setDropdownRegion] = useState('');
+    
+    const handleChange = (e) => {
+        setDropdownRegion(e.target.value);
+    };
+
     const handleSelect = (e) => {
 
         console.log(e.target.value)
@@ -53,18 +67,33 @@ const Home = () => {
 
         setFilteredCountries(filter);
     };
-    
 
-    
-
-
-    let Europe= "Europe"
-    let Asia= "Asia"
-    let Africa= "Africa"
-    let Americas= "Americas"
-    let Oceania= "Oceania"
-
-
+    const dropDownHandler = (e) => {
+        handleChange(e);
+        handleSelect(e);
+    }
+    /* const CustomDropdown = styled(InputBase)(({ theme }) => ({
+        'label + &': {
+          marginTop: theme.spacing(3),
+        },
+        '& .MuiInputBase-input': {
+          borderRadius: 6,
+          position: 'relative',
+          backgroundColor: theme.palette.background.paper,
+          border: '1px solid #414147',
+          fontSize: 16,
+          fontColor: theme.palette.typography.white,
+          padding: '10px 26px 10px 12px',
+          transition: theme.transitions.create(['border-color', 'box-shadow']),
+          
+          '&:focus': {
+            borderRadius: 6,
+            borderColor: '#414147',
+            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+          },
+        },
+      }));
+     */
 
     return(
         
@@ -72,13 +101,27 @@ const Home = () => {
 
         <ThemeProvider theme={customtheme}>
             
-            <Grid container sx={{mt:5}}>
+            <Grid  container sx={{mt:5}}>
                 
-                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Europe} onClick={handleSelect}>Europe</Button>
-                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Asia} onClick={handleSelect}>Asia</Button>
-                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Americas} onClick={handleSelect}>Americas</Button>
-                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Africa} onClick={handleSelect}>Africa</Button>
-                <Button sx={{mr:3, border: '1px solid #414147', borderRadius: '6px'} } value={Oceania} onClick={handleSelect}>Oceania</Button>
+                <FormControl sx={{ m: 1, minWidth: 120, color: 'customCard.white' }}>
+                {/* <CustomDropdown sx={{color: 'customCard.white'}} id="demo-customized-textbox" /> */}
+                <InputLabel sx={{color: 'customCard.white'}}  id="demo-simple-select-label">Region</InputLabel>
+                    <Select 
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={dropdownRegion}
+                        label="dropdownRegion"
+                        onChange={dropDownHandler}
+                        sx={{color: 'customCard.white', border: '1px solid #414147', borderRadius: '6px' }}
+                    >
+                        <MenuItem sx={{color: 'customCard.white'}} value='Europe' onClick={dropDownHandler}>Europe</MenuItem>
+                        <MenuItem sx={{color: 'customCard.white'}} value='Asia' onClick={dropDownHandler}>Asia</MenuItem>
+                        <MenuItem sx={{color: 'customCard.white'}} value='Americas' onClick={dropDownHandler} >Americas</MenuItem>
+                        <MenuItem sx={{color: 'customCard.white'}} value='Africa' onClick={dropDownHandler} >Africa</MenuItem>
+                        <MenuItem sx={{color: 'customCard.white'}} value='Oceania' onClick={dropDownHandler} >Oceania</MenuItem>
+                    </Select>
+                </FormControl>
+                
                 {(countries.length > 0) ? countryCards : <Loading />}
                 
             </Grid>

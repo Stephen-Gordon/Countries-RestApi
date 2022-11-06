@@ -13,14 +13,20 @@ const customtheme = createTheme({
         },
         customCard: {
             white: "#FFFFFF",
-            purple: "#a5a5a8",
-          }
+            light: "#b9b9c7",
+            purple: "#4d61f7",
+          },
+          typography: {
+            main: '#FFFFFF',
+            white: "#FFFFFF",
+          },  
+
       },
-      typography: {
-        color: '#ffffff',
-        white: "#FFFFFF",
-      },
+      
       
     });
 
+/* https://coolors.co/1f1f27 */
+
 export default customtheme
+

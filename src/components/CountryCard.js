@@ -14,6 +14,7 @@ import { Box, styled } from '@mui/material';
 import { ThemeProvider } from '@mui/material';
 import { borders, display } from '@mui/system';
 
+//Theme
 import customtheme from '../theme'
 
 const CountryCard = (props) => {
@@ -31,11 +32,11 @@ const CountryCard = (props) => {
                         
                       
                             <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
-                            <Link underline="none"  to={`/country/${props.name}`}>
-                                <Typography color="customCard.white" gutterBottom variant="h4" component="div">
-                                    {props.name}
-                                </Typography>
-                            </Link>
+                                <Link underline="none"  to={`/country/${props.name}`}>
+                                    <Typography color="customCard.white" gutterBottom variant="h4" component="div">
+                                        {props.name}
+                                    </Typography>
+                                </Link>
                             </Box>
 
                             <Box sx={{p: 5, display: 'flex'}}>
@@ -88,9 +89,7 @@ const CountryCard = (props) => {
                                     </Box>
                                 </Grid>
 
-                                <Grid xs={6}>
-                                   
-                                </Grid>
+                               
 
                                 <Grid xs={12}>
                                     <CardMedia sx={{ borderRadius: '6px' }} height="100%" width="100%" component="img" src={props.flag}  />  
