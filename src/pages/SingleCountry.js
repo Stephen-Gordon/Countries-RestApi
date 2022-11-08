@@ -47,7 +47,10 @@ const SingleCountry = () => {
     
     
 
-    let html = <Loading/>
+    let html = 
+    <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
+        <Loading/>
+    </Grid>
 
     if(country){
         html = (
@@ -56,7 +59,7 @@ const SingleCountry = () => {
             
                 <Grid container sx={{ mt:5 }}>
             
-                    <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #414147', borderRadius: '6px' }}>
+                    <Card sx={{ mt:4, pb:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '6px' }}>
                         
                       
                             <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
@@ -112,13 +115,10 @@ const SingleCountry = () => {
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Currencies</p>
                                         </Typography>
-                                        {/* <Typography color="customCard.white" gutterBottom variant="h5" component="div">
-                                            <p>Currencies</p>
-                                        </Typography> */}
+                                        
 
                                       <Typography color="customCard.white" gutterBottom variant="h5" component="div">
-                                        {/* {Object.values(country.currencies)[0].name} */}
-                                            {/* <p>{(country && Object.values(country.currencies)[0].name) ? Object.values(country.currencies)[0].name : "loading"}</p> */}
+                                            <p>{(country && Object.values(country.currencies)[0].name) ? Object.values(country.currencies)[0].name : "loading"}</p> 
                                         </Typography> 
                                     </Box>
                                 </Grid>
@@ -132,13 +132,9 @@ const SingleCountry = () => {
                             </Grid>
 
 
-                            <Box sx={{mt:' 112px', pl:5, pr:5, pt:5,  gridArea: 'header' }}>   
-                                <Typography color="customCard.light" gutterBottom variant="h4" component="div">
-                                        <p>{(country && country.name) ? country.name : "loading"} Holidays</p>
-                                </Typography>
-                            </Box>
+                            
                                 
-                           <HolidayCard alpha2Code={alpha2Code}/>
+                           <HolidayCard name={country.name} alpha2Code={alpha2Code}/>
                            
                                 
                                 

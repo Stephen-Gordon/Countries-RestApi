@@ -6,7 +6,7 @@ import Loading from '../components/Loading';
 
 import CountryCard from '../components/CountryCard';
 
-import {MenuItem, Select, InputLabel, FormControl, Grid, Item, Button, ThemeProvider } from '@mui/material';
+import {MenuItem, Select, InputLabel, FormControl, Grid, Item, Button, ThemeProvider, Box, TextField } from '@mui/material';
 
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
@@ -24,7 +24,7 @@ const Home = () => {
 
     const [countries, setCountries] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([]);
-    
+    const [dropdownRegion, setDropdownRegion] = useState('');
 
 
     useEffect(() => {
@@ -48,11 +48,23 @@ const Home = () => {
    
     
     
-    
+    const handlePopSelect = (e) => {
+
+        
+        
+        
+        let filter = countries.filter((country) => {
+            return country.population < e.target.value;
+        });
+
+        setFilteredCountries(filter);
+        
+
+    };
    
 
     
-    const [dropdownRegion, setDropdownRegion] = useState('');
+    
     
     const handleChange = (e) => {
         setDropdownRegion(e.target.value);
@@ -60,7 +72,7 @@ const Home = () => {
 
     const handleSelect = (e) => {
 
-        console.log(e.target.value)
+     
         let filter = countries.filter((country) => {
             return country.region === e.target.value;
         });
@@ -71,6 +83,7 @@ const Home = () => {
     const dropDownHandler = (e) => {
         handleChange(e);
         handleSelect(e);
+        
     }
     /* const CustomDropdown = styled(InputBase)(({ theme }) => ({
         'label + &': {
@@ -118,11 +131,26 @@ const Home = () => {
                         <MenuItem sx={{color: 'customCard.white'}} value='Asia' onClick={dropDownHandler}>Asia</MenuItem>
                         <MenuItem sx={{color: 'customCard.white'}} value='Americas' onClick={dropDownHandler} >Americas</MenuItem>
                         <MenuItem sx={{color: 'customCard.white'}} value='Africa' onClick={dropDownHandler} >Africa</MenuItem>
-                        <MenuItem sx={{color: 'customCard.white'}} value='Oceania' onClick={dropDownHandler} >Oceania</MenuItem>
+                        <MenuItem sx={{color: 'customCard.white'}} value='Oceania' onClick={dropDownHandler}>Oceania</MenuItem>
                     </Select>
                 </FormControl>
+
                 
-                {(countries.length > 0) ? countryCards : <Loading />}
+
+
+                
+                <TextField id="Population" label="Population"  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', style: {color: 'white', border: '1px solid #414147', borderRadius: '6px' } }} sx={{ m: 1, minWidth: 120, color: 'customCard.white' }} onChange={handlePopSelect} />
+
+
+
+                {
+                (countries.length > 0) ? countryCards : 
+                
+                <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
+                    <Loading />
+                </Grid>
+                  
+                }
                 
             </Grid>
         </ThemeProvider>

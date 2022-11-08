@@ -36,15 +36,24 @@ const HolidayCard = (props) => {
 
 
  
-   let html = <p>There are no holidays</p>
+   let html = <></>
 
    if(holidays.length >= 1){
+
        html = (
            
            <>
             <ThemeProvider theme={customtheme}>                                      
                 <Grid container  columns={16} sx={{display: 'flex'}}>
+
+                            <Grid  item md={16} sm={16} sx={{mt:' 112px', pl:5, pr:5, pt:5,  gridArea: 'header' }}>   
+                                <Typography color="customCard.light" gutterBottom variant="h4" component="div">
+                                        <p>{(props.name && props.name) ? props.name : "loading"} Holidays</p>
+                                </Typography>
+                            </Grid>
+
                     <Grid  item md={8} sm={16}>
+                    
                         <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
                                 
                             <Box>
