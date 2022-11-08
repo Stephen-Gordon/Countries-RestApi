@@ -27,7 +27,7 @@ const SingleCountry = () => {
 
     
     
-    const [country, setCountry] = useState([]);
+    const [country, setCountry] = useState(null);
     const [alpha2Code, setAlpha2Code] = useState("");
     
     const [holidays, setHolidays] = useState([]);
@@ -63,7 +63,7 @@ const SingleCountry = () => {
 
     let html = <Loading/>
 
-    if(country && holidays){
+    if(country){
         html = (
             <>
             <ThemeProvider theme={customtheme}>
@@ -161,8 +161,8 @@ const SingleCountry = () => {
                                                 
                                             <Box>
                                                 <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
-                                                <p>{(holidays) ? holidays[0].name : "loading"}</p> 
-                                                    {/* <p>{holidays[0].name}</p> */}
+                                               {/*  <p>{(holidays) ? holidays[0].name : "loading"}</p>  */}
+                                                    <p>{holidays[0]?.name}</p> 
                                                 </Typography>
                                                 <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
                                                 {/* <p>{holidays[0].description}</p> */}
