@@ -8,10 +8,9 @@ import axios from '../config/api';
 import { ThemeProvider ,Box, Card, CardActions, CardContent, CardMedia, Typography, Grid ,Button } from "@mui/material";
 
 import Loading from '../components/Loading'
-import Grow from "@mui/material";
 
 import customtheme from '../theme'
-
+import HolidayCard from '../components/HolidayCard'
 import { styled } from '@mui/material/styles';
 const Img = styled('img')({
     
@@ -30,15 +29,13 @@ const SingleCountry = () => {
     const [country, setCountry] = useState(null);
     const [alpha2Code, setAlpha2Code] = useState("");
     
-    const [holidays, setHolidays] = useState([]);
     
-
     useEffect(() => {
         axios.get(`/name/${name}?fullText=true`)
              .then((response) => {
                 setCountry(response.data[0]);
                 setAlpha2Code(response.data[0].alpha2Code);
-                holidaysApi();
+                //holidaysApi();
              })
              .catch((error) => {
                 console.log(error);
@@ -46,18 +43,7 @@ const SingleCountry = () => {
              });
     }, []);
 
-    const holidaysApi = () => {
-        console.log(alpha2Code)
-        axios.get(`https://holidays.abstractapi.com/v1/?api_key=4347605faf344efc8645549af1840be8&country=${alpha2Code}&year=2020`)
-              .then((response) => {
-                 console.log(response.data)
-                 setHolidays(response.data);
-             })
-              .catch((error) => {
-                 console.log(error);
-              }); 
-        
-   }
+   
     
     
 
@@ -68,7 +54,7 @@ const SingleCountry = () => {
             <>
             <ThemeProvider theme={customtheme}>
             
-                <Grid container sx={{ mt:5 }} xs={12} sm={12} lg={12}>
+                <Grid container sx={{ mt:5 }}>
             
                     <Card sx={{ mt:4, color: 'customCard.white', border: '1px solid #414147', borderRadius: '6px' }}>
                         
@@ -152,47 +138,10 @@ const SingleCountry = () => {
                                 </Typography>
                             </Box>
                                 
-                           
+                           <HolidayCard alpha2Code={alpha2Code}/>
                            
                                 
-                                <Grid container  columns={16} sx={{display: 'flex'}}>
-                                    <Grid  item md={8} sm={16}>
-                                        <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
-                                                
-                                            <Box>
-                                                <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
-                                               {/*  <p>{(holidays) ? holidays[0].name : "loading"}</p>  */}
-                                                    <p>{holidays[0]?.name}</p> 
-                                                </Typography>
-                                                <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
-                                                {/* <p>{holidays[0].description}</p> */}
-                                                </Typography>
-                                                {/* <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
-                                                    <p>{holidays[0].date}</p>
-                                                </Typography> */}
-                                            </Box>
-                                                
-                                        </Card>
-                                    </Grid> 
-                                       
-                                        <Grid item md={8} sm={16}>
-                                            <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
-                                                    
-                                                    <Box>
-                                                        <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
-                                                            <p>Liberation Day</p>
-                                                        </Typography>
-                                                        <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
-                                                            <p>Liberation day is a public holiday in afganistan</p>
-                                                        </Typography>
-                                                        <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
-                                                            <p>Tuesday the 15th 2022</p>
-                                                        </Typography>
-                                                    </Box>
-    
-                                            </Card>
-                                        </Grid>
-                                </Grid>
+                                
                     </Card>
             </Grid>
         </ThemeProvider>
@@ -200,9 +149,6 @@ const SingleCountry = () => {
         );
     }
 
-
-    {/* <p>{(holidays) ? holidays[0].name : "loading"}</p> */}
-    
 
     /* Return HTML for loading feature */
     return(
