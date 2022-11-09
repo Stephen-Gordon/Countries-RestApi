@@ -6,6 +6,7 @@ import axios from '../config/api';
 import { ThemeProvider ,Box, Card, Typography, Grid ,Button } from "@mui/material";
 
 import Loading from './Loading'
+import UnsplashCard from "./UnsplashCard";
 
 import customtheme from '../theme'
 
@@ -19,14 +20,14 @@ const HolidayCard = (props) => {
     let alpha2Code = props.alpha2Code;
     //console.log(alpha2Code)
 
-
+    let country
 
 
     //connect to api
     useEffect(() => {
         axios.get(`https://holidays.abstractapi.com/v1/?api_key=4347605faf344efc8645549af1840be8&country=${alpha2Code}&year=2020`)
             .then((response) => {
-                console.log(response.data)
+                //console.log(response.data)
                 setHolidays(response.data);
             })
             .catch((error) => {
@@ -94,6 +95,7 @@ const HolidayCard = (props) => {
 
                         </Card>
                     </Grid>
+                    <UnsplashCard holiday0={holidays[0]?.name}/>
                 </Grid>
             
         </ThemeProvider>

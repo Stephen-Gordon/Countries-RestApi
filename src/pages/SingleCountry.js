@@ -11,6 +11,9 @@ import Loading from '../components/Loading'
 
 import customtheme from '../theme'
 import HolidayCard from '../components/HolidayCard'
+import UnsplashCard from '../components/UnsplashCard'
+
+
 import { styled } from '@mui/material/styles';
 const Img = styled('img')({
     
