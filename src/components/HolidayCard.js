@@ -55,47 +55,44 @@ const HolidayCard = (props) => {
 
                     <Grid  item md={8} sm={16}>
                     
-                        <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
+                    <Card sx={{ m:4, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
                                 
-                            <Box>
-                                <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
-                                   <p>{holidays[0]?.name}</p>  
-                                </Typography>
+                                <Box style={{ position: "relative" }}>
                                 
+                                <UnsplashCard id={0}  holiday0={holidays[0]?.name}  holiday1={holidays[1]?.name}/>
+                                    <Typography sx={{ p:5}}  style={{position: "absolute", top: 20 }} color="customCard.purple" gutterBottom variant="h6" component="div">
+                                        <p>{holidays[0]?.name}</p>  
+                                    </Typography>
 
-                                <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
-                                    <p>{holidays[0]?.description}</p> 
-                                </Typography>
-
-
-                                <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
-                                    <p>{holidays[0]?.date}</p>
-                                </Typography> 
-                            </Box>
+                                    <Typography sx={{ p:5 }} style={{position: "absolute" , top: 60 }}   color="customCard.light" gutterBottom variant="h5"  component="div">
+                                        <p>{holidays[0]?.date}</p>
+                                    </Typography> 
+                                    
+                                </Box>
 
                         </Card>
                     </Grid> 
                                        
                     <Grid item md={8} sm={16}>
-                        <Card sx={{ m:4, p:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
+                        <Card sx={{ m:4, color: 'customCard.white', border: '1px solid #414147', borderRadius: '12px' }}>
                                 
-                                <Box>
-                                    <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
+                                <Box style={{ position: "relative" }}>
+                                
+                                <UnsplashCard id={1}  holidays={holidays}/>
+                                    <Typography sx={{ p:5}}  style={{position: "absolute", top: 20 }} color="customCard.purple" gutterBottom variant="h6" component="div">
                                         <p>{holidays[1]?.name}</p>  
                                     </Typography>
-                                    <Typography  color="customCard.white" gutterBottom variant="h5"  component="div">
-                                        <p>{holidays[1]?.description}</p> 
-                                    </Typography>
 
-
-                                    <Typography  color="customCard.light" gutterBottom variant="h5"  component="div">
+                                    <Typography sx={{ p:5 }} style={{position: "absolute" , top: 60 }}   color="customCard.light" gutterBottom variant="h5"  component="div">
                                         <p>{holidays[1]?.date}</p>
                                     </Typography> 
+                                    
                                 </Box>
 
                         </Card>
                     </Grid>
-                    <UnsplashCard holiday0={holidays[0]?.name}/>
+                   
+               
                 </Grid>
             
         </ThemeProvider>

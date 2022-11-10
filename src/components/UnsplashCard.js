@@ -26,24 +26,41 @@ const UnsplashCard = (props) => {
 
 
     //Sets photos
-    const [photos, setPhotos] = useState([]);
+    const [photo0, setPhoto0] = useState([]);
+    const [photo1, setPhoto1] = useState([]);
     
-    let holiday0 = props.holiday0;
+    let holidays = props.holidays;
+   
 
-    let searchTerm = name.toString() + holiday0.toString();
+    let searchTerm0 = name + "-" + holidays[0]?.name;
+    let searchTerm1 = name + "-" + holidays[1]?.name;
 
-    console.log(searchTerm)
+    searchTerm0 = searchTerm0.replace(/ /g,"-")
+    searchTerm1 = searchTerm1.replace(/ /g,"-")
+   
 
 
     //connect to api
 
 
     useEffect(() => {
-        axios.get(`https://api.unsplash.com/search/photos?per_page=3&query=${searchTerm}&client_id=CadDhU45XCbET8bJeOmO2e_uOkcPXWowM3Z_ZAUSaPo`)
+        axios.get(`https://api.unsplash.com/search/photos?per_page=3&query=${searchTerm0}&client_id=CadDhU45XCbET8bJeOmO2e_uOkcPXWowM3Z_ZAUSaPo`)
             .then((response) => {
-                setPhotos(response.data.results);
-                console.log(photos[0].urls.regular)
+                setPhoto0(response.data.results);
+                console.log(photo0[0].urls.regular)
                 //let source = photos.results[0].urls.regular;
+                
+            })
+            .catch((error) => {
+                console.log(error);
+            }); 
+    }, []);
+
+    useEffect(() => {
+        axios.get(`https://api.unsplash.com/search/photos?per_page=3&query=${searchTerm1}&client_id=CadDhU45XCbET8bJeOmO2e_uOkcPXWowM3Z_ZAUSaPo`)
+            .then((response) => {
+                setPhoto1(response.data.results);
+                console.log(photo1[0].urls.regular)
                 
             })
             .catch((error) => {
@@ -54,15 +71,18 @@ const UnsplashCard = (props) => {
     let html = <></>
 
 
-    if(photos.length >= 1) {
+    if(photo0.length && photo1.length >= 1) {
 
         html = (
             <>
-           <ThemeProvider theme={customtheme}>                                      
+           {/* <ThemeProvider theme={customtheme}>                                      
                     <Grid sx={{pr:5}} item md={6} sm={12} xs={12}>
-                            <Img  sx={{ border: '1px solid #414147', borderRadius: '12px' }} alt="unsplash-country-image" src={photos[0]?.urls?.regular} />
+                        <Img  sx={{ border: '1px solid #414147', borderRadius: '12px' }} alt="unsplash-country-image" src={photo0[0]?.urls?.regular} />
                     </Grid>  
-                </ThemeProvider>  
+            </ThemeProvider>  */} 
+           
+                        <Img  sx={{ border: '1px solid #414147', borderRadius: '12px' }} alt="unsplash-country-image" src={photo0[props.id]?.urls?.regular} />
+                    
             </>
         )
 
@@ -75,13 +95,6 @@ const UnsplashCard = (props) => {
             <>
                 {html}
 
-                <Card >
-                    <div style={{ position: "relative" }}>  
-                        <CardMedia style={{ height: "250px", paddingTop: "2%" }} 
-                        component="img" src={photos[0]?.urls?.regular}/> 
-
-                    <div style={{position: "absolute", color: "white",top: 10,left: "50%",transform: "translateX(-50%)",}}> Some text</div>  </div>
-                </Card>
 
             </>
         )
