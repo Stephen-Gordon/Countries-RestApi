@@ -6,14 +6,35 @@ import Loading from '../components/Loading';
 
 import CountryCard from '../components/CountryCard';
 
-import {MenuItem, Select, InputLabel, FormControl, Grid, Item, Button, ThemeProvider, Box, TextField } from '@mui/material';
-
-import InputBase from '@mui/material/InputBase';
-import { styled } from '@mui/material/styles';
+import {InputBase, MenuItem, Select, InputLabel, FormControl, Grid, Item, Button, ThemeProvider, Box, TextField } from '@mui/material';
 
 
+import { alpha, styled } from '@mui/material';
 
-const COUNTRIES_URL = 'https://restcountries.com/v3.1/';
+/* import InputBase from '@mui/material';
+ */
+
+const PopulationInput = styled((TextField))(({ theme }) => ({
+    'label': {
+      color: 'white',
+    },
+    '& .MuiInputBase-input': {
+      borderRadius: 6,
+      border: '1px solid #414147',
+      color: '#fffff',
+      transition: theme.transitions.create([
+        'border-color',
+        'background-color',
+        'box-shadow',
+      ]),
+      
+      '&:focus': {
+        //boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+        BorderColor: theme.palette.primary.darker,
+      },
+    },
+  }));
+
 
 
 
@@ -24,6 +45,7 @@ const Home = () => {
 
     const [countries, setCountries] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([]);
+    const [sortedCountries, setSortedCountries] = useState([]);
     const [dropdownRegion, setDropdownRegion] = useState('');
 
 
@@ -33,6 +55,7 @@ const Home = () => {
                 console.log("Use EFFECT");
                 setCountries(response.data);
                 setFilteredCountries(response.data);
+                setSortedCountries(response.data);
              })
              .catch((error) => {
                 console.log(error);
@@ -42,6 +65,7 @@ const Home = () => {
     
 
     let countryCards = filteredCountries.map((country, i) => {
+        console.log(country.capital)
         return <CountryCard flag={country.flags.png} name={country.name} region={country.region} capital={country.capital} population={country.population}  languages={country.languages} key={i} />
     })
 
@@ -51,19 +75,15 @@ const Home = () => {
     const handlePopSelect = (e) => {
 
         
-        
-        
         let filter = countries.filter((country) => {
             return country.population < e.target.value;
         });
 
         setFilteredCountries(filter);
         
-
     };
    
 
-    
     
     
     const handleChange = (e) => {
@@ -85,28 +105,12 @@ const Home = () => {
         handleSelect(e);
         
     }
-    /* const CustomDropdown = styled(InputBase)(({ theme }) => ({
-        'label + &': {
-          marginTop: theme.spacing(3),
-        },
-        '& .MuiInputBase-input': {
-          borderRadius: 6,
-          position: 'relative',
-          backgroundColor: theme.palette.background.paper,
-          border: '1px solid #414147',
-          fontSize: 16,
-          fontColor: theme.palette.typography.white,
-          padding: '10px 26px 10px 12px',
-          transition: theme.transitions.create(['border-color', 'box-shadow']),
-          
-          '&:focus': {
-            borderRadius: 6,
-            borderColor: '#414147',
-            boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-          },
-        },
-      }));
-     */
+
+
+
+   
+
+    
 
     return(
         
@@ -136,10 +140,9 @@ const Home = () => {
                 </FormControl>
 
                 
-
-
+   
                 
-                <TextField id="Population" label="Population"  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', style: {color: 'white', border: '1px solid #414147', borderRadius: '6px' } }} sx={{ m: 1, minWidth: 120, color: 'customCard.white' }} onChange={handlePopSelect} />
+                <PopulationInput id="Population" label="Population"  inputProps={{ inputMode: 'numeric', pattern: '[0-9]*', style: {color: 'white'} }} sx={{ m: 1, minWidth: 120, color: '#FFFFF' }} onChange={handlePopSelect} />
 
 
 

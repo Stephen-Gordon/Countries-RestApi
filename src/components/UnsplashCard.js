@@ -16,7 +16,7 @@ const Img = styled('img')({
     
     display: 'column',
     width: '100%',
-    height: '100%',
+    height: '300px',
   });
 
 const UnsplashCard = (props) => {
@@ -29,11 +29,12 @@ const UnsplashCard = (props) => {
     const [photo0, setPhoto0] = useState([]);
     const [photo1, setPhoto1] = useState([]);
     
-    let holidays = props.holidays;
+    //let holidays = props.holidays;
+    //console.log(props.holidays)
    
 
-    let searchTerm0 = name + "-" + holidays[0]?.name;
-    let searchTerm1 = name + "-" + holidays[1]?.name;
+    let searchTerm0 = name ;
+    let searchTerm1 = name ;
 
     searchTerm0 = searchTerm0.replace(/ /g,"-")
     searchTerm1 = searchTerm1.replace(/ /g,"-")
@@ -75,32 +76,19 @@ const UnsplashCard = (props) => {
 
         html = (
             <>
-           {/* <ThemeProvider theme={customtheme}>                                      
-                    <Grid sx={{pr:5}} item md={6} sm={12} xs={12}>
-                        <Img  sx={{ border: '1px solid #414147', borderRadius: '12px' }} alt="unsplash-country-image" src={photo0[0]?.urls?.regular} />
-                    </Grid>  
-            </ThemeProvider>  */} 
-           
-                        <Img  sx={{ border: '1px solid #414147', borderRadius: '12px' }} alt="unsplash-country-image" src={photo0[props.id]?.urls?.regular} />
-                    
+                <Img  sx={{borderRadius: '12px'  }} alt="unsplash-country-image" src={photo0[props.id]?.urls?.regular} />
             </>
         )
 
     }
-
-        
+   
 
 
         return(
             <>
                 {html}
-
-
             </>
         )
-
-        
-  
 
 }
 

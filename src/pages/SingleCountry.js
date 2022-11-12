@@ -38,7 +38,7 @@ const SingleCountry = () => {
              .then((response) => {
                 setCountry(response.data[0]);
                 setAlpha2Code(response.data[0].alpha2Code);
-                //holidaysApi();
+                
              })
              .catch((error) => {
                 console.log(error);
@@ -65,7 +65,7 @@ const SingleCountry = () => {
                     <Card sx={{ mt:4, pb:5, color: 'customCard.white', border: '1px solid #414147', borderRadius: '6px' }}>
                         
                       
-                            <Box sx={{pl:5, pr:5, pt:5,  gridArea: 'header' }}>
+                            <Box sx={{pl:5, pr:5, pt:5, mb:5,  gridArea: 'header' }}>
                             
                                 <Typography color="customCard.white" gutterBottom variant="h3" component="div">
                                     {(country && country.name) ? country.name : "loading"}
@@ -73,9 +73,9 @@ const SingleCountry = () => {
                            
                             </Box>
 
-                            <Grid cointainer column={12}  sx={{pl: 5, display: 'flex', flexWrap: 'wrap'}}>
+                            <Grid cointainer column={12}  sx={{pl: 5, display: 'flex', flexWrap: 'wrap' }}>
                             
-                                <Grid sx={{pr:3}} item lg={2} md={2} sm={4} xs={6} >
+                                <Grid sx={{pl:5, mt:3, mb:3, borderLeft: '2px solid #414147'}} item lg={2} md={2} sm={4} xs={6} >
                                 
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
@@ -95,13 +95,10 @@ const SingleCountry = () => {
                                         <p>{(country && country.capital) ? country.capital : "loading"}</p>
                                         </Typography>
                                     </Box>
-
-                                    
-
                                     
                                 </Grid>
                                
-                                <Grid sx={{pr:3}} item lg={2} md={2} sm={4} xs={6}>
+                                <Grid sx={{pl:5,mt:3, mb:3}} item lg={2} md={2} sm={4} xs={6}>
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Population</p>
@@ -110,11 +107,7 @@ const SingleCountry = () => {
                                         <Typography color="customCard.white" gutterBottom variant="h5" component="div">
                                             <p>{(country && country.population) ? country.population : "loading"}</p>
                                         </Typography>
-                                    </Box>
-                                </Grid>
-                                
-                                <Grid sx={{pr:3}} item lg={2} md={2} sm={4} xs={6} >
-                                    <Box>
+
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">
                                             <p>Currencies</p>
                                         </Typography>
@@ -123,21 +116,28 @@ const SingleCountry = () => {
                                       <Typography color="customCard.white" gutterBottom variant="h5" component="div">
                                             <p>{(country && Object.values(country.currencies)[0].name) ? Object.values(country.currencies)[0].name : "loading"}</p> 
                                         </Typography> 
+                                    
+                                    
                                     </Box>
                                 </Grid>
+                                <Grid sx={{mt:3, mb:3}} item lg={2} md={2} sm={4} xs={6}>
+                                    
+                                </Grid>
 
-                                <Grid sx={{pr:5}} item md={6} sm={12} xs={12}>
-                                    <Img  sx={{ border: '1px solid #414147', borderRadius: '12px' }} alt="country-image" src={country?.flags?.png} />
+                               
+                                
+                               
+                                <Grid sx={{pr:5}} lg={6} item md={6} sm={12} xs={12}>
+                                    <Img  sx={{border: '1px solid #414147', borderRadius: '12px' }} alt="country-image" src={country?.flags?.png} />
                                 </Grid> 
                                
                             
                             
                             </Grid>
-
-
-                            
                                 
-                           <HolidayCard name={country.name} alpha2Code={alpha2Code}/>
+                            <Grid  item lg={12} md={12} sm={12} xs={12}>
+                                <HolidayCard name={country.name} alpha2Code={alpha2Code}/>
+                            </Grid>
                            
                                 
                                 
@@ -149,7 +149,6 @@ const SingleCountry = () => {
     }
 
 
-    /* Return HTML for loading feature */
     return(
         
         <>

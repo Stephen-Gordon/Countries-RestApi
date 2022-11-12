@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-//import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Container, Grid, ThemeProvider, CssBaseline } from "@mui/material";
+
+import { Container, ThemeProvider, CssBaseline } from "@mui/material";
 
 //Pages
 import Home from './pages/Home'
@@ -11,6 +9,7 @@ import Home from './pages/Home'
 import SingleCountry from './pages/SingleCountry'
 
 import customtheme from './theme'
+import NavBar from './components/NavBar'
 
 
 
@@ -21,6 +20,7 @@ let App = () => {
   <ThemeProvider theme={customtheme}>
     <CssBaseline>
     <Router>
+      <NavBar/>
         <Container  maxWidth="md">        
             <Routes>
               <Route path='/' element={<Home/>}/>
