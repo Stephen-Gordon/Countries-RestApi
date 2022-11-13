@@ -52,7 +52,7 @@ const Home = () => {
     useEffect(() => {
         axios.get(`/all`)
              .then((response) => {
-                console.log("Use EFFECT");
+                
                 setCountries(response.data);
                 setFilteredCountries(response.data);
                 setSortedCountries(response.data);
@@ -65,7 +65,7 @@ const Home = () => {
     
 
     let countryCards = filteredCountries.map((country, i) => {
-        console.log(country.capital)
+      
         return <CountryCard flag={country.flags.png} name={country.name} region={country.region} capital={country.capital} population={country.population}  languages={country.languages} key={i} />
     })
 
@@ -121,7 +121,6 @@ const Home = () => {
             <Grid  container sx={{mt:5}}>
                 
                 <FormControl sx={{ m: 1, minWidth: 120, color: 'customCard.white' }}>
-                {/* <CustomDropdown sx={{color: 'customCard.white'}} id="demo-customized-textbox" /> */}
                 <InputLabel sx={{color: 'customCard.white'}}  id="demo-simple-select-label">Region</InputLabel>
                     <Select 
                         labelId="demo-simple-select-label"

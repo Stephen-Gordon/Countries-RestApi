@@ -3,13 +3,6 @@ import {useState, useEffect} from 'react';
 
 import axios from '../config/api';
 
-import {CardMedia, ThemeProvider ,Box, Card, Typography, Grid ,Button } from "@mui/material";
-
-import Loading from './Loading'
-
-import customtheme from '../theme'
-
-
 import { styled } from '@mui/material/styles';
 
 const Img = styled('img')({
@@ -29,9 +22,7 @@ const UnsplashCard = (props) => {
     const [photo0, setPhoto0] = useState([]);
     const [photo1, setPhoto1] = useState([]);
     
-    //let holidays = props.holidays;
-    //console.log(props.holidays)
-   
+
 
     let searchTerm0 = name ;
     let searchTerm1 = name ;
@@ -48,8 +39,6 @@ const UnsplashCard = (props) => {
         axios.get(`https://api.unsplash.com/search/photos?per_page=3&query=${searchTerm0}&client_id=CadDhU45XCbET8bJeOmO2e_uOkcPXWowM3Z_ZAUSaPo`)
             .then((response) => {
                 setPhoto0(response.data.results);
-                console.log(photo0[0].urls.regular)
-                //let source = photos.results[0].urls.regular;
                 
             })
             .catch((error) => {
@@ -61,7 +50,7 @@ const UnsplashCard = (props) => {
         axios.get(`https://api.unsplash.com/search/photos?per_page=3&query=${searchTerm1}&client_id=CadDhU45XCbET8bJeOmO2e_uOkcPXWowM3Z_ZAUSaPo`)
             .then((response) => {
                 setPhoto1(response.data.results);
-                console.log(photo1[0].urls.regular)
+                
                 
             })
             .catch((error) => {
@@ -79,10 +68,8 @@ const UnsplashCard = (props) => {
                 <Img  sx={{borderRadius: '12px'  }} alt="unsplash-country-image" src={photo0[props.id]?.urls?.regular} />
             </>
         )
-
     }
    
-
 
         return(
             <>

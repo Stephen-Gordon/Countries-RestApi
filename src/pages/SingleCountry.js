@@ -11,8 +11,6 @@ import Loading from '../components/Loading'
 
 import customtheme from '../theme'
 import HolidayCard from '../components/HolidayCard'
-import UnsplashCard from '../components/UnsplashCard'
-
 
 import { styled } from '@mui/material/styles';
 const Img = styled('img')({
@@ -75,7 +73,7 @@ const SingleCountry = () => {
 
                             <Grid cointainer column={12}  sx={{pl: 5, display: 'flex', flexWrap: 'wrap' }}>
                             
-                                <Grid sx={{pl:5, mt:3, mb:3, borderLeft: '2px solid #414147'}} item lg={2} md={2} sm={4} xs={6} >
+                                <Grid sx={{pl:5, pr:5, mt:3, mb:3, borderLeft: '2px solid #414147'}} item lg={2} md={2} sm={4} xs={6} >
                                 
                                     <Box>
                                         <Typography color="customCard.purple" gutterBottom variant="h6" component="div">

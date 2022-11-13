@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 
 const PageNotFound = () => {
@@ -13,7 +14,7 @@ const PageNotFound = () => {
     if(location.pathname === '/country'){
         html = (
             <div>
-                <h2>Sorry, 404 country was not found</h2>
+                <Typography sx={{color:'customCard.white'}}>Sorry, country was not found</Typography>
             </div>
         )
     }
