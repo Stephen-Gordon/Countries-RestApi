@@ -24,7 +24,7 @@ const HolidayCard = (props) => {
 
     //connect to api
     useEffect(() => {
-        axios.get(`https://holidays.abstractapi.com/v1/?api_key=4347605faf344efc8645549af1840be8&country=${alpha2Code}&year=2020`)
+        axios.get(`https://holidays.abstractapi.com/v1/?api_key=db876077d65c4252b73cdccc77bc6a60&country=${alpha2Code}&year=2020&month=12`)
             .then((response) => {
                 //console.log(response.data)
                 setHolidays(response.data);
