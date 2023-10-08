@@ -20,8 +20,9 @@
   <img src="./src/assets/countriesphone3.png" width="200" />
 </p>
 
-![How it works](./src/assets/countriesDiagram2.svg)
-
+<p align="center">
+  <img src="./src/assets/countriesDiagram.jpg.png" width="200" />
+</p>
 
 
 
