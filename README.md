@@ -21,7 +21,7 @@
 </p>
 
 <p align="center">
-  <img src="./src/assets/countriesDiagram.jpg.png" width="200" />
+  <img src="./src/assets/countriesDiagram.jpg" width="200" />
 </p>
 
 
